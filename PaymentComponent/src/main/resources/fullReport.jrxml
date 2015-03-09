@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" language="java" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="181"/>
+	<parameter name="empid" class="java.lang.String"/>
+	<parameter name="name" class="java.lang.String"/>
+	<parameter name="department" class="java.lang.String"/>
+	<parameter name="slipno" class="java.lang.String"/>
+	<parameter name="holidaystaken" class="java.lang.String"/>
+	<parameter name="basicsalary" class="java.lang.String"/>
+	<parameter name="ot" class="java.lang.String"/>
+	<parameter name="bonus" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.String"/>
+	<parameter name="epf" class="java.lang.String"/>
+	<parameter name="leave" class="java.lang.String"/>
+	<parameter name="deducttotal" class="java.lang.String"/>
+	<parameter name="netsalary" class="java.lang.String"/>
+	<parameter name="loan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="234" y="66" width="91" height="33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRSTREPORT]]></text>
+			</staticText>
+			<elementGroup>
+				<staticText>
+					<reportElement x="-151" y="-8" width="0" height="0"/>
+					<textElement>
+						<font fontName="Times New Roman" size="16"/>
+					</textElement>
+					<text><![CDATA[El]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="1" y="2" width="157" height="40"/>
+					<textElement>
+						<font fontName="Traditional Arabic" size="23" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MINTBOOKS]]></text>
+				</staticText>
+			</elementGroup>
+			<staticText>
+				<reportElement x="401" y="2" width="54" height="20"/>
+				<textElement/>
+				<text><![CDATA[PaySlip #:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="3" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{slipno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="401" y="22" width="54" height="20"/>
+				<textElement/>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="22" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="99" width="553" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="3" y="32" width="100" height="20"/>
+				<textElement>
+					<font fontName="Bell MT" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EGREEN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="50" width="149" height="20"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pramoda Nadeeshan Fernando]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="56" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="-1" y="2" width="555" height="52"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="8" y="29" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Employee Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="9" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Employee ID       :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="9" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{empid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="29" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="258" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="91" width="555" height="163"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="0" y="6" width="555" height="81"/>
+			</rectangle>
+			<line>
+				<reportElement x="1" y="29" width="554" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="6" width="155" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATTENDENCE DETAILS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="47" width="152" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total Holidays: 3(per Month)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="47" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total Holidays taken:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="47" width="100" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{holidaystaken}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="97" width="161" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAYMENT DETAILS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="11" y="117" width="211" height="125"/>
+			</rectangle>
+			<line>
+				<reportElement x="11" y="209" width="211" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="93" y="120" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Earnings]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement x="111" y="137" width="1" height="105"/>
+			</line>
+			<staticText>
+				<reportElement x="22" y="138" width="87" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Basic Salary]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="141" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{basicsalary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="163" width="87" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[O.T. Charges]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="163" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="183" width="88" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Bonus]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="183" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{bonus}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="11" y="136" width="211" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="36" y="213" width="47" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="122" y="210" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="114" width="554" height="1"/>
+			</line>
+			<rectangle>
+				<reportElement x="301" y="116" width="211" height="125"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="383" y="119" width="100" height="16"/>
+				<textElement/>
+				<text><![CDATA[Deductions]]></text>
+			</staticText>
+			<line>
+				<reportElement x="301" y="208" width="211" height="1"/>
+			</line>
+			<line>
+				<reportElement x="301" y="135" width="211" height="1"/>
+			</line>
+			<line direction="BottomUp">
+				<reportElement x="401" y="136" width="1" height="105"/>
+			</line>
+			<staticText>
+				<reportElement x="315" y="135" width="83" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[E.P.F.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="155" width="83" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Leave Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="325" y="215" width="55" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="402" y="138" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{epf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="158" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{leave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="213" width="100" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{deducttotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="183" width="83" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<text><![CDATA[Loan Amount]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="402" y="183" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{loan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="100" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NET SALARY:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="0" width="119" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{netsalary}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="192" height="20"/>
+				<textElement verticalAlignment="Bottom"/>
+				<text><![CDATA[Signature:............................................]]></text>
+			</staticText>
+<image>
+				<reportElement x="46" y="27" width="95" height="30"/>
+				<imageExpression><![CDATA["D:\\E-Green Projects\\MintBooks\\mint_books\\PaymentComponent\\src\\main\\resources\\Nokiyanew.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="172" y="27" width="83" height="30"/>
+				<imageExpression><![CDATA["D:\\E-Green Projects\\MintBooks\\mint_books\\PaymentComponent\\src\\main\\resources\\samsung.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="294" y="28" width="73" height="29"/>
+				<imageExpression><![CDATA["D:\\E-Green Projects\\MintBooks\\mint_books\\PaymentComponent\\src\\main\\resources\\sony.jpg"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="410" y="24" width="73" height="33"/>
+				<imageExpression><![CDATA["D:\\E-Green Projects\\MintBooks\\mint_books\\PaymentComponent\\src\\main\\resources\\lg.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

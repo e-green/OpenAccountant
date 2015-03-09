@@ -1,0 +1,21 @@
+rootProject.name = 'server'
+
+include 'main'
+
+include 'web'
+
+include 'usercomponent'
+
+include 'dbcontroller'
+
+include 'basicweb'
+
+include 'PaymentComponent'
+
+include 'CustomerOrderComponent'
+
+include 'TranceActionComponent'
+
+
+
+

@@ -1,0 +1,68 @@
+//axonVersion = "0.6"
+//springVersion = "4.0.5.RELEASE"
+//springSecurityVersion = "3.0.3.RELEASE"
+//slf4jVersion = "1.5.8"
+//sourceCompatibility = 1.5
+
+subprojects {
+    apply plugin: 'java'
+
+    configurations {
+        all*.exclude group: "commons-logging", module: "commons-logging"
+//        jasperreports {
+//            transitive = true
+//        }
+    }
+//    gradle.projectsEvaluated {
+//        processResources.dependsOn(compileJasperReports)
+//    }
+
+
+    repositories {
+        mavenCentral()
+//        jcenter()
+//        maven { url "http://jasperreports.sourceforge.net/maven2/" }
+//        maven { url "http://jaspersoft.artifactoryonline.com/jaspersoft/third-party-ce-artifacts/" }
+    }
+
+    dependencies {
+
+        compile "org.slf4j:jcl-over-slf4j:1.5.8",
+                "org.slf4j:jul-to-slf4j:1.5.8"
+        runtime "org.slf4j:slf4j-log4j12:1.5.8"
+
+        compile("log4j:log4j:1.2.14") {
+            exclude group: "com.sun.jdmk", module: "jmxtools"
+            exclude group: "com.sun.jmx", module: "jmxri"
+            exclude group: "javax.mail", module: "mail"
+            exclude group: "javax.jms", module: "jms"
+        }
+
+//        compile 'net.sourceforge.dynamicreports:dynamicreports-core:4.0.0'
+//        compile 'net.sourceforge.dynamicreports:dynamicreports-adhoc:3.0.0'
+
+        compile 'org.codehaus.groovy:groovy-all:2.3.6'
+        compile 'org.codehaus.groovy:groovy:2.3.6'
+
+
+
+        testCompile 'junit:junit:4.7'
+    }
+
+//    task compileJasperReports {
+//        def jasperSourceDir = file('src/main/jasperreports')
+//        ant {
+//            taskdef(name: 'jrc', classname: 'net.sf.jasperreports.ant.JRAntCompileTask', classpath: configurations.jasperreports.asPath)
+//            sourceSets.main.output.classesDir.mkdirs()
+//            jrc(srcdir: jasperSourceDir, destdir: sourceSets.main.output.classesDir) {
+//                classpath(path: sourceSets.main.output.classesDir)
+//                include(name: '**/*.jrxml')
+//            }
+//        }
+      //  classes.dependsOn compileJasperJava
+
+
+
+        group = 'org.egreen.opensmspro'
+        version = '1.0-SNAPSHOT'
+    }

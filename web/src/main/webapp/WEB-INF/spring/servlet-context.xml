@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+    <beans:import resource="hibernate.xml"/>
+    <!-- DispatcherServlet Context: defines this servlet's request-processing
+    infrastructure -->
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <annotation-driven/>
+
+
+    <!-- Internationalization support -->
+
+    <beans:bean id="localeResolver"
+                class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <beans:property name="defaultLocale" value="en_US"/>
+    </beans:bean>
+
+    <beans:bean id="localeChangeInterceptor"
+                class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <beans:property name="paramName" value="language"/>
+    </beans:bean>
+
+    <beans:bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping">
+        <beans:property name="interceptors">
+            <beans:list>
+                <beans:ref bean="localeChangeInterceptor"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+
+    <beans:bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <beans:property name="basename" value="locale/messages"/>
+    </beans:bean>
+
+
+    <context:component-scan base-package="org.egreen.opensms.server"/>
+
+
+    <beans:bean
+
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+
+        <beans:property name="prefix">
+
+            <beans:value>/WEB-INF/</beans:value>
+
+        </beans:property>
+
+        <beans:property name="suffix">
+
+            <beans:value>.jsp</beans:value>
+
+        </beans:property>
+    </beans:bean>
+
+
+    <beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <beans:property name="messageConverters">
+            <beans:list>
+                <beans:ref bean="jsonMessageConverter"/>
+            </beans:list>
+        </beans:property>
+    </beans:bean>
+    <beans:bean id="jsonMessageConverter"
+                class="org.egreen.opensms.server.option.JsonMapper"/>
+
+    <!--<beans:bean id="awsCredentials" class="com.amazonaws.auth.BasicAWSCredentials">-->
+    <!--<beans:constructor-arg name="accessKey" value="AKIAIPRLIZ7MZM5PJ5AQ"/>-->
+        <!--<beans:constructor-arg name="secretKey" value="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"/>-->
+    <!--</beans:bean>-->
+
+    <!--<beans:bean id="pdfReport" class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"-->
+          <!--p:url="classpath:fullReport.jrxml"-->
+          <!--p:reportDataKey="datasource">-->
+
+    <!--</beans:bean>-->
+
+
+</beans:beans>
