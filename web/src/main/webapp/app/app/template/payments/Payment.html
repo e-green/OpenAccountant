@@ -1,0 +1,234 @@
+<!--Adding page content-->
+<div ng-controller="PaymentController">
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <a class="ui teal ribbon label">Customer Invoice</a>
+            <a class="ui blue ribbon label">View and Payment</a>
+            <br><br>
+
+            <div class="ui form">
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>From Date</label>
+
+                        <div class="ui search">
+                            <input id="datetimepicker" ng-model="invoice.fromDate" type="text"
+                                   placeholder="Select Date">
+
+                        </div>
+                    </div>
+                    <div class="four wide field">
+                        <label>To Date</label>
+                        <input id="datetimepicker1" ng-model="invoice.toDate" type="text"
+                               placeholder="Select Date">
+                    </div>
+                    <div class="two wide field">
+                        <label>Search Invoice</label>
+                        <button class="ui button teal" ng-click="searchInvoice()">view</button>
+                    </div>
+                    <div class="six wide field">
+                        <label>Search by customer name</label>
+                        <input type="text" ng-model="query" placeholder="Enter Customer Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <div>
+                <table class="ui sortable celled table">
+                    <tr>
+                        <th>Invoice Date</th>
+                        <th>Due Date</th>
+                        <th>Customer Name</th>
+                        <th>Invoice Amount</th>
+                        <th style="max-width: 20px;">Options</th>
+                    </tr>
+                    <tr ng-repeat="data in today_orders | filter : query">
+                        <td>{{data.invoiceDate| date : format : shortDate}}</td>
+                        <td>{{data.orderDueDate| date : format : shortDate}}</td>
+                        <td>{{data.customerName}}</td>
+                        <td>{{data.amount}}</td>
+                        <td>
+                            <button class="ui button teal" ng-click="orderItems(data.cusOrderId)">view items</button>
+                            <button class="ui button blue-grey" ng-click="getPaymentModal(data.cusOrderId)">payment
+                            </button>
+                            <button class="ui button teal" ng-click="viewPayments(data.cusOrderId)">view payment
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--View All Items modal-->
+    <div class="ui modal" id="orderModal">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Invoice Details
+        </div>
+        <div class="content">
+
+
+            <table class="ui sortable celled table">
+                <tr>
+                    <th>Item Name</th>
+                    <th>Description</th>
+                    <th>Quentity</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+                <tr ng-repeat="data in orderItems">
+                    <td>{{data.itemName}}</td>
+                    <td>{{data.description}}</td>
+                    <td>{{data.quentity}}</td>
+                    <td>{{data.rate}}</td>
+                    <td>{{data.amount}}</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <!--Payment Modal-->
+    <div class="ui modal" id="paymentModal">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Invoice Details - Payment
+        </div>
+        <div class="content">
+            <div class="ui form">
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>Search From</label>
+                        <input id="datetimepicker2" ng-model="payment.date" type="text" placeholder="Select Date">
+                    </div>
+
+                    <div class="four wide field">
+                        <label>Search By Transaction Name</label>
+                        <input ng-model="payment.amount" type="text" placeholder="Enter Transaction Name">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <button class="ui red button">
+                    <i class="remove icon"></i>
+                    No
+                </button>
+                <button class="ui green button" ng-click="makePayment()">
+                    <i class="checkmark icon"></i>
+                    Add Payment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--view invoice payments-->
+    <div class="ui modal" id="orderpaymentModal">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Invoice Details - Payment
+        </div>
+        <div class="content">
+            <table class="ui sortable celled table">
+                <tr>
+                    <th>Customer Order ID</th>
+                    <th>Payment Date</th>
+                    <th>Amount</th>
+                </tr>
+                <tr ng-repeat="data in all_order_payment">
+                    <td>{{data.customerOrderId}}</td>
+                    <td>{{data.date | date : format : shortDate}}</td>
+                    <td>{{data.amount}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <button class="ui red button">
+                    <i class="remove icon"></i>
+                    No
+                </button>
+                <button class="ui green button">
+                    <i class="checkmark icon"></i>
+                    Yea
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $('.dropdown')
+            .dropdown({
+                // you can use any ui transition
+                transition: 'drop'
+            })
+    ;
+</script>
+
+<script>
+    jQuery('#datetimepicker').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+    jQuery('#datetimepicker1').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+    jQuery('#datetimepicker2').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+</script>

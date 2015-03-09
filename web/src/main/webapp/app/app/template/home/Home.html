@@ -1,0 +1,61 @@
+<!--Adding page content-->
+<div ng-controller="HomeController">
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <a class="ui teal ribbon label">Dashboard</a>
+            <a class="ui blue  ribbon label">Profit & Loss Overview</a>
+            <br><br>
+
+            <div class="ui grid">
+
+                <div class="five wide column">
+                    <div>
+                        <canvas style="max-height: 500px; max-width: 600px;" id="doughnut" class="chart chart-doughnut"
+                                data="data"
+                                labels="labels"></canvas>
+                    </div>
+                </div>
+
+                <div class="three wide column" style="text-align: right">
+                    <a style="background-color: #ABC8D7" class="ui  tag label big"><span
+                            ng-bind="income"></span></a><br>
+                    <label style="color: #004d40">YEAR TO DATE INCOME</label><br><br>
+                    <a style="background-color: #DCDCDC" class="ui tag label big"><span
+                            ng-bind="spending"></span></a><br>
+                    <label style="color: #004d40">YEAR TO DATE EXPENSES</label><br><br>
+                    <a style="background-color: #F7464A" class="ui tag label big"><span ng-bind="profit"></span></a><br>
+                    <label style="color: #004d40">YEAR TO DATE NET PROFIT</label>
+                </div>
+
+                <div class="five wide column">
+                    <canvas style="max-height: 300px; max-width: 600px;" id="pie4" class="chart chart-pie"
+                            data="data1"
+                            labels="labels1"></canvas>
+
+                </div>
+                <div class="three wide column" style="text-align: right">
+                    <a class="ui tag label blue" ng-repeat="item in spendingList">{{item.categoryName}}
+                        {{item.amount}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <a class="ui teal ribbon label">Appointments</a>
+            <a class="ui blue ribbon label">Meetings</a>
+
+
+        </div>
+    </div>
+</div>
+<script>
+    $('.dropdown')
+            .dropdown({
+                // you can use any ui transition
+                transition: 'drop'
+            })
+    ;
+</script>

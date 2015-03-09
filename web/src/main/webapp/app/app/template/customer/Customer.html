@@ -1,0 +1,194 @@
+<!--Adding page content-->
+<div ng-controller="CustomerController">
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <a class="ui teal ribbon label">Customers</a>
+            <a class="ui blue  ribbon label">Customer Orders & Customer Income</a>
+            <br><br><br>
+
+            <div class="ui grid">
+
+                <div class="twelve wide column">
+                    <div>
+                        <div class="ui steps">
+                            <div class="active step">
+                                <i class="shop icon"></i>
+
+                                <div class="content">
+                                    <div class="title">Total Amount</div>
+                                    <div class="description" style="font-size: large"><b><span
+                                            ng-bind="totalAmount"></span></b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="active step">
+                                <i class="suitcase icon"></i>
+
+                                <div class="content">
+                                    <div class="title">Recieved Amount</div>
+                                    <div class="description" style="font-size: large;"><b><span
+                                            ng-bind="recievedAmount"></span></b>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="active step">
+                                <i class="dollar icon"></i>
+
+                                <div class="content">
+                                    <div class="title">Pending Amount</div>
+                                    <div class="description" style="font-size: large;"><b><span
+                                            ng-bind="pendingAmount"></span></b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="four wide column" style="text-align: right">
+                    <button class="ui primary button" ng-click="getModel()">Add New Customer</button>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div class="ui form">
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>Sort Table by Customer Name</label>
+                        <button class="ui primary button" ng-click="sortByName()">Sort by Name</button>
+                    </div>
+                    <div class="four wide field">
+                        <label>Sort Table by Customer Order Value</label>
+                        <button class="ui primary button" ng-click="sortByValue()">Sort by Value</button>
+                    </div>
+                    <div class="eight wide field">
+                        <label>Search By Customer Name</label>
+                        <input type="text" ng-model="query" placeholder="Enter Customer Name">
+                    </div>
+                </div>
+            </div>
+            <table class="ui sortable celled table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Name</th>
+                    <th>Phone No</th>
+                    <th>Mobile No</th>
+                    <th>Email</th>
+                    <th>FAX</th>
+                    <th>Invoice</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="data in allCustomers | filter : query">
+                    <td>{{data.title}}</td>
+                    <td>{{data.firstName}} {{data.middleName}} {{data.lastName}}</td>
+                    <td>{{data.phoneNumber}}</td>
+                    <td>{{data.mobileNumber}}</td>
+                    <td>{{data.email}}
+                        <a href={{data.email}}>Send Mail</a>
+                    </td>
+                    <td>{{data.fax}}</td>
+                    <td><a href="#/invoice/{{data.userId}}">Create Invoice</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <!--Adding the Customer Modal-->
+
+    <div class="ui modal" id="customerModal">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Customer Information
+        </div>
+        <div class="content">
+
+            <div class="ui header">Basic Information</div>
+            <div class="ui form">
+                <div class="eight wide column">
+                    <div class="fields">
+                        <div class="four wide field">
+                            <label>Title</label>
+
+                            <select name="gender" class="ui dropdown" ng-model="customer.title">
+                                <option value="">Title</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Special">Special</option>
+                            </select>
+                        </div>
+                        <div class="four wide field">
+                            <label>First Name</label>
+                            <input type="text" placeholder="First Name" ng-model="customer.firstName">
+                        </div>
+                        <div class="four wide field">
+                            <label>Middle Name</label>
+                            <input type="text" placeholder="Middle Name" ng-model="customer.middleName">
+                        </div>
+                        <div class="four wide field">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="Last Name" ng-model="customer.lastName">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eight wide column">
+                    <div class="fields">
+                        <div class="four wide field">
+                            <label>Email</label>
+                            <input type="text" placeholder="Enter Email" ng-model="customer.email">
+
+                        </div>
+                        <div class="four wide field">
+                            <label>Phone</label>
+                            <input type="text" placeholder="Enter Phone No" ng-model="customer.phoneNumber">
+                        </div>
+                        <div class="four wide field">
+                            <label>Mobile</label>
+                            <input type="text" placeholder="Enter Mobile No" ng-model="customer.mobileNumber">
+                        </div>
+                        <div class="four wide field">
+                            <label>FAX</label>
+                            <input type="text" placeholder="Enter FAX No" ng-model="customer.fax">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!---->
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <button class="ui red button">
+                    <i class="remove icon"></i>
+                    No
+                </button>
+                <button class="ui green button" ng-click="saveCustomer()">
+                    <i class="checkmark icon"></i>
+                    Add Customer
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--Ending of the customer Modal-->
+
+
+<script>
+    $('.dropdown')
+            .dropdown({
+                // you can use any ui transition
+                transition: 'drop'
+            })
+    ;
+</script>

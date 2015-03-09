@@ -1,0 +1,236 @@
+<!--Adding page content-->
+<div ng-controller="ExpensesController">
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <a class="ui red ribbon label">Expenses</a>
+            <br><br>
+
+            <div class="ui grid">
+
+                <div class="one wide column">
+
+                </div>
+
+                <div class="eleven wide column">
+                    <div>
+                        <canvas style="max-height: 300px;" id="bar" class="chart chart-bar" data="data"
+                                labels="labels"></canvas>
+                    </div>
+                </div>
+
+                <div class="four wide column" style="text-align: right">
+
+                    <a class="ui red tag label huge"><span ng-bind="totalExpenses"></span></a><br>
+                    <label style="color: #004d40">YEAR TO DATE EXPENSES</label>
+                    <br><br>
+                    <button ng-click="addExpense()" class="ui primary button">Add Expense</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-left: 130px;padding-right: 20px;" ng-show="addExpenseView">
+        <div class="ui raised segment" style="background-color: #f3c6be">
+            <a class="ui red ribbon label">Add Expense</a>
+
+            <div class="ui form">
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>Date</label>
+                        <input ng-model="expense.date" id="datetimepicker2" type="text" placeholder="Select Date">
+                    </div>
+                    <div class="four wide field">
+                        <label>Transaction Name</label>
+                        <input ng-model="expense.spendingsName" type="text" placeholder="Enter Transaction Name">
+                    </div>
+                    <div class="four wide field">
+                        <label>Category</label>
+
+                        <select name="type" class="ui dropdown" id="select" ng-model="expense.category">
+                            <option value="">Category</option>
+                            <option value="Advertising">Advertising</option>
+                            <option value="Assets">Assets</option>
+                            <option value="Travel">Travel</option>
+                            <option value="Commissions">Commissions</option>
+                            <option value="Material">Material</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                    </div>
+                    <div class="four wide field">
+                        <label>Amount (LKR)</label>
+                        <input ng-model="expense.amount" style="text-align: right" type="text"
+                               placeholder="Enter Amount">
+                    </div>
+                </div>
+                <div class="ui grid">
+                    <div class="four wide column"></div>
+
+                    <div class="eleven wide column"></div>
+
+                    <div class="one wide column">
+
+                    </div>
+                    <div class="three wide column">
+                        <button class="ui button" ng-click="hideExpense()">Cancel</button>
+                        <button class="ui primary button" ng-click="saveExpense()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <div class="ui form">
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>Search From</label>
+                        <input id="datetimepicker" ng-model="spending.fromDate" type="text" placeholder="Select Date">
+                    </div>
+                    <div class="four wide field">
+                        <label>Search To</label>
+                        <input id="datetimepicker1" ng-model="spending.toDate" type="text" placeholder="Select Date">
+                    </div>
+                    <div class="two wide field">
+                        <label>Search By Date</label>
+                        <button class="ui blue icon button" ng-click="searchSpending()"><i class="search icon"></i>
+                        </button>
+                        <button class="ui teal icon button" ng-click="resetAll()"><i class="refresh icon"></i>
+                        </button>
+                    </div>
+                    <div class="six wide field">
+                        <label>Search By Transaction Name</label>
+                        <input type="text" placeholder="Enter Transaction Name" ng-model="query">
+                    </div>
+                </div>
+            </div>
+            <table class="ui sortable celled table">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Transaction Name</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="data in allSpendings | filter : query">
+                    <td>{{data.date | date : format : shortDate}}</td>
+                    <td>{{data.spendingsName}}</td>
+                    <td>{{data.category}}</td>
+                    <td>{{data.amount}}</td>
+                    <td>
+                        <button ng-click="getModal(data.spendingsId,data.spendingsName)" class="ui red button">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <!--Creating a confirmation Modal-->
+
+    <div class="ui basic modal" id="confirmModal">
+        <i class="close icon"></i>
+
+        <div class="header">
+            Do you want to delete spending record ?
+        </div>
+        <div class="content">
+            <div class="image">
+                <i class="trash icon"></i>
+            </div>
+            <div class="description">
+                <p>Make sure you cannot recover any deleted spending records.</p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="two fluid ui inverted buttons">
+                <button class="ui red basic inverted button">
+                    <i class="remove icon"></i>
+                    No
+                </button>
+                <button class="ui green basic inverted button" ng-click="confirmAction()">
+                    <i class="checkmark icon"></i>
+                    Yes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--end of the confirmation modal-->
+
+</div>
+<script>
+    $('.dropdown')
+            .dropdown({
+                // you can use any ui transition
+                transition: 'drop'
+            })
+    ;
+</script>
+
+<script>
+    jQuery('#datetimepicker').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember',
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa.",
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+    jQuery('#datetimepicker1').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember',
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa.",
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+
+    jQuery('#datetimepicker2').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember',
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa.",
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+</script>

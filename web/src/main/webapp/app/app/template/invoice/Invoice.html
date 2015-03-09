@@ -1,0 +1,164 @@
+<!--Adding page content-->
+<div ng-controller="InvoiceController">
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <a class="ui teal ribbon label">Customer Invoice</a>
+            <a class="ui blue ribbon label">Customer Basic Details</a>
+            <br><br>
+
+            <div class="ui form">
+                <div class="fields">
+                    <div class="four wide field">
+                        <label>Customer Name</label>
+
+                        <div class="ui search">
+                            <input ng-model="invoice.customer_name" type="text"
+                                   placeholder="Search Customers">
+
+                            <div class="results"></div>
+                        </div>
+                    </div>
+                    <div class="four wide field">
+                        <label>Invoice Date</label>
+                        <input id="datetimepicker" ng-model="invoice.invoiceDate" type="text" placeholder="Select Date">
+                    </div>
+                    <div class="four wide field">
+                        <label>Order Due Date</label>
+                        <input id="datetimepicker1" ng-model="invoice.orderDueDate" type="text"
+                               placeholder="Select Date" ng-blur="saveCustomerInvoice()">
+                    </div>
+                    <div class="four wide field">
+                        <label>Order Value (LKR)</label>
+                        <a class="ui teal tag label big"><span ng-bind="order_price"></span></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+            <a class="ui teal ribbon label">Customer Invoice</a>
+            <a class="ui blue ribbon label">Add Items to Invoice</a>
+            <br><br>
+
+            <div class="ui form">
+                <div class="fields">
+                    <div class="three wide field">
+                        <label>Product</label>
+                        <input type="text" ng-model="invoice.itemName" placeholder="Select Product">
+                    </div>
+                    <div class="three wide field">
+                        <label>Description</label>
+                        <input type="text" ng-model="invoice.description" placeholder="Description">
+                    </div>
+                    <div class="three wide field">
+                        <label>Rate</label>
+                        <input type="text" ng-model="invoice.rate" placeholder="Unit Rate">
+                    </div>
+                    <div class="three wide field">
+                        <label>Quantity</label>
+                        <input type="text" ng-model="invoice.quentity" placeholder="Enter Quantity"
+                               ng-blur="calculate()">
+                    </div>
+                    <div class="three wide field">
+                        <label>Amount</label>
+                        <input type="text" ng-model="invoice.amount" placeholder="Enter Amount">
+                    </div>
+                    <div class="one wide field">
+                        <label>Add to cart</label>
+                        <button class="ui blue button" ng-click="saveCustomerOrderItem()">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="padding-left: 130px;padding-right: 20px;">
+        <div class="ui raised segment">
+
+            <table class="ui sortable celled table">
+                <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr ng-repeat="item in orderItems">
+                    <td>{{item.itemName}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.quentity}}</td>
+                    <td>{{item.rate}}</td>
+                    <td>{{item.amount}}</td>
+                    <td>
+                        <button class="ui icon button red" ng-click="removeItem(item.customerOrderHasItemId)">
+                            <i class="remove circle icon"></i>
+                        </button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <a ng-click="updateOrder()" class="ui button teal">Save Invoice</a>
+
+            <a class="ui button blue"
+               href="http://192.168.1.101:8080/web/mintbooks/v1/reports/customer_invoice?customerOrderId={{order_id}}">Print
+                Invoice</a>
+        </div>
+    </div>
+
+</div>
+<script>
+    $('.dropdown')
+            .dropdown({
+                // you can use any ui transition
+                transition: 'drop'
+            })
+    ;
+</script>
+
+<script>
+    jQuery('#datetimepicker').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+    jQuery('#datetimepicker1').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'Januar', 'Februar', 'März', 'April',
+                    'Mai', 'Juni', 'Juli', 'August',
+                    'September', 'Oktober', 'November', 'Dezember'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+</script>
