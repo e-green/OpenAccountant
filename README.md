@@ -43,6 +43,13 @@ MintBooks Community Edition includes following features :
    3. All the reports are Printable and can be saved as PDF
    4. Filter data and visualize them according to the user request
    
+#### MintBooks is an Accounting package most suitable for Self Employed and Small Businesses to manage their daily transactions and other basic business needs. MintBooks Community Edition is free of Charge anyone can use it. But some features are limited in the Community Edition. Specially free support and automatic backup system. And some security features.
+
+## Getting started with Odoo
+
+For the standard usage , please follow the [Online MintBook Documentation](http://egreen.io/).
+You can directly download souce code via GitHub.
+
 
 
    
