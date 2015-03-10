@@ -11,3 +11,9 @@ MintBooks Community Edition includes following features :
 -  Printable and Dynamic Reports
 -  Diagrams , Charts & Graphs to visualize data for decision making.
 
+## Features Supported in MintBooks Community Edition
+
+-Income Management
+  -Add , Remove , Updates Income
+  -Categorise all Inocme by date periods and sort them
+  -Visualise Income and preview them as dynamic charts and graphs
