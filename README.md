@@ -50,6 +50,12 @@ MintBooks Community Edition includes following features :
 For the standard usage , please follow the [Online MintBook Documentation](http://egreen.io/).
 You can directly download souce code via GitHub.
 
+## Support
+
+Support is provided by [EGreen Software Solutions](http://egreen.io/)
+
+### We welcome your feedback and contribution.
+
 
 
    
