@@ -58,7 +58,7 @@ Support is provided by [EGreen Software Solutions](http://egreen.io/)
 
 ### We welcome your feedback and contribution.
 
-#### MintBooks Team
+:blush: :blush:  #### MintBooks Team  :blush: :blush:
 
    
   
