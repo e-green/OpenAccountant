@@ -3,11 +3,11 @@
 
 MintBooks Community Edition includes following features :
 
-- #### Income and Expense Management
-- #### Customer Management
-- #### Invoice Management
-- #### Appointment Management
-- #### Stock Management
-- #### Printable and Dynamic Reports
-- #### Diagrams , Charts & Graphs to visualize data for decision making.
+-  Income and Expense Management
+-  Customer Management
+-  Invoice Management
+-  Appointment Management
+-  Stock Management
+-  Printable and Dynamic Reports
+-  Diagrams , Charts & Graphs to visualize data for decision making.
 
