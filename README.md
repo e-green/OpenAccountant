@@ -23,11 +23,25 @@ MintBooks Community Edition includes following features :
    2. Categorise all Expenses by date periods and sort them
    3. Visualise Expenses and preview them as dynamic charts and graphs
    
-2. Customer Management
+3. Customer Management
    1. Add , Updates and View Customers
    2. Sort Customers by Customer Value.
-   3. Visualise Expenses and preview them as dynamic charts and graphs
+   3. Quick Search Customers by Customer name and other customer endemic qualities
+   4. Quickly add Invoices to customer.
+   5. Display Due Income , Total Income , Recieved Income from Customers
+   6. Visualise customer data according to customers and ease of decision making
+
+4. Invoice Management
+   1. Add , Remove , Updates Invoices
+   2. Categorise all Invoices by date period , Invoice value and Customer
+   3. Reminders about due Invoice Payments
+   4. Printable Invoices and can be saved as PDF
    
+5. Data Visualization
+   1. Dynamic Charts according to the data sets of user
+   2. Visualize Incomes , Expenses , Customer base values , Invoices for easy decision making
+   3. All the reports are Printable and can be saved as PDF
+   4. Filter data and visualize them according to the user request
    
 
 
