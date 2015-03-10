@@ -48,9 +48,9 @@ MintBooks Community Edition includes following features :
 ## Getting started with MintBooks Community Edition
 
 For the standard usage , please follow the [Online MintBook Documentation](http://egreen.io/).
-You can directly download souce code via GitHub.
+Directly download souce code via GitHub.
 
-## Support
+## MintBooks Community Support
 
 Support is provided by [EGreen Software Solutions](http://egreen.io/)
 
