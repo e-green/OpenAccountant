@@ -17,3 +17,7 @@ MintBooks Community Edition includes following features :
   -Add , Remove , Updates Income
   -Categorise all Inocme by date periods and sort them
   -Visualise Income and preview them as dynamic charts and graphs
+
+1. Item 1
+  1. A corollary to the above item.
+  2. Yet another point to consider.
