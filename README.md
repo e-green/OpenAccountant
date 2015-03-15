@@ -60,5 +60,6 @@ Support is provided by [EGreen Software Solutions](http://egreen.io/)
 
 :blush:MintBooks Team:blush:
 
+### Licence 
    
-  
+  under [https://tldrlegal.com/license/egreen-open-source-#summary](https://tldrlegal.com/license/egreen-open-source-#summary)
