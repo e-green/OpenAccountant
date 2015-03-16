@@ -62,4 +62,4 @@ Support is provided by [EGreen Software Solutions](http://egreen.io/)
 
 ### Licence 
    
-  under [https://tldrlegal.com/license/egreen-open-source-#summary](https://tldrlegal.com/license/egreen-open-source-#summary)
+  Under [https://tldrlegal.com/license/egreen-open-source-#summary](https://tldrlegal.com/license/egreen-open-source-#summary)
