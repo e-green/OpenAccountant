@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: barcode4j-2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.barcode4j/barcode4j/2.0/68c9e295cdcf030e2681339c1c6ecf73476e4ec2/barcode4j-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.sf.barcode4j/barcode4j/2.0/f16d4fb3569a76b7a5f9767f5e49d3023b160ed0/barcode4j-2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

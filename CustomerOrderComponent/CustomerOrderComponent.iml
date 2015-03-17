@@ -18,6 +18,7 @@
     <orderEntry type="module" module-name="basicweb" exported="" />
     <orderEntry type="module" module-name="dbcontroller" exported="" />
     <orderEntry type="module" module-name="usercomponent" exported="" />
+    <orderEntry type="module" module-name="ItemComponent" exported="" />
     <orderEntry type="library" exported="" name="Gradle: jcl-over-slf4j-1.5.8" level="project" />
     <orderEntry type="library" exported="" name="Gradle: jul-to-slf4j-1.5.8" level="project" />
     <orderEntry type="library" exported="" name="Gradle: log4j-1.2.14" level="project" />
@@ -26,7 +27,6 @@
     <orderEntry type="library" exported="" name="Gradle: slf4j-api-1.5.8" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: slf4j-log4j12-1.5.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit-4.7" level="project" />
-    <orderEntry type="module" module-name="ItemComponent" />
   </component>
 </module>
 

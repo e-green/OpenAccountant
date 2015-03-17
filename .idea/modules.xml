@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CustomerOrderComponent/CustomerOrderComponent.iml" filepath="$PROJECT_DIR$/CustomerOrderComponent/CustomerOrderComponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ItemComponent/ItemComponent.iml" filepath="$PROJECT_DIR$/ItemComponent/ItemComponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PaymentComponent/PaymentComponent.iml" filepath="$PROJECT_DIR$/PaymentComponent/PaymentComponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TranceActionComponent/TranceActionComponent.iml" filepath="$PROJECT_DIR$/TranceActionComponent/TranceActionComponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/basicweb/basicweb.iml" filepath="$PROJECT_DIR$/basicweb/basicweb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dbcontroller/dbcontroller.iml" filepath="$PROJECT_DIR$/dbcontroller/dbcontroller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/main/main.iml" filepath="$PROJECT_DIR$/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server.iml" filepath="$PROJECT_DIR$/server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/usercomponent/usercomponent.iml" filepath="$PROJECT_DIR$/usercomponent/usercomponent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
+    </modules>
+  </component>
+</project>
+
