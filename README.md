@@ -42,6 +42,12 @@ MintBooks Community Edition includes following features :
    2. Visualize Incomes , Expenses , Customer base values , Invoices for easy decision making
    3. All the reports are Printable and can be saved as PDF
    4. Filter data and visualize them according to the user request
+
+6. Stock Management
+   1. Add new inventory (Item) , update inventory , delete items.
+   2. Rollback inventory.
+   3. Manage categories , suppliers and brands.
+   4. Manage re-order levels.
    
 ![GitHub Logo](http://hrm.egreen.io/mint/income.png)
 
