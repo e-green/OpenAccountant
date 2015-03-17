@@ -78,9 +78,10 @@ public class CustomerOrderDAOControllerImpl extends AbstractDAOController<Custom
 
     @Override
     public List<CustomerOrder> searchAllCustomerOrderByDate() {
-        Session session=getSession();
-        String hql = "SELECT co FROM CustomerOrder co WHERE DATE(invoiceDate) = DATE(NOW())";
-        return session.createQuery(hql).list();
+        Criteria criteria = getSession().createCriteria(entityType);
+        criteria.addOrder(Order.asc("invoiceDate"));
+        criteria.setMaxResults(10);
+        return criteria.list();
     }
 
     @Override

@@ -14,6 +14,8 @@ include 'PaymentComponent'
 
 include 'CustomerOrderComponent'
 
+include 'ItemComponent'
+
 include 'TranceActionComponent'
 
 

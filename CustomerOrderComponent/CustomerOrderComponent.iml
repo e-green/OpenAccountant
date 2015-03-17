@@ -26,6 +26,7 @@
     <orderEntry type="library" exported="" name="Gradle: slf4j-api-1.5.8" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: slf4j-log4j12-1.5.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: junit-4.7" level="project" />
+    <orderEntry type="module" module-name="ItemComponent" />
   </component>
 </module>
 

@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':main')
+    compile project(':basicweb')
+    compile project(':dbcontroller')
+}

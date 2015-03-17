@@ -35,6 +35,7 @@
     <orderEntry type="module" module-name="dbcontroller" exported="" />
     <orderEntry type="module" module-name="usercomponent" exported="" />
     <orderEntry type="module" module-name="PaymentComponent" exported="" />
+    <orderEntry type="module" module-name="ItemComponent" exported="" />
     <orderEntry type="module" module-name="CustomerOrderComponent" exported="" />
     <orderEntry type="module" module-name="TranceActionComponent" exported="" />
     <orderEntry type="library" exported="" name="Gradle: jcl-over-slf4j-1.5.8" level="project" />
