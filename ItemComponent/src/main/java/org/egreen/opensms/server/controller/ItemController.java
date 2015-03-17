@@ -40,14 +40,16 @@ public class ItemController {
     /**
      * Save Item
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @param item
      * @return
      */
     @RequestMapping(value = "save", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseMessage addItem(@RequestBody Item item) {
-
-        System.out.println("Con Item Name : " + item);
         Long res = itemDAOService.saveItem(item);
         ResponseMessage responseMessage;
         if (res != null) {
@@ -76,6 +78,10 @@ public class ItemController {
     /**
      * Search Item By Name
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @return
      */
     @RequestMapping(value = "searchItemModel", method = RequestMethod.GET)
@@ -102,6 +108,16 @@ public class ItemController {
         return itemModelList;
     }
 
+    /**
+     * Search Item Model By ItemQty
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     * @param qty
+     * @return
+     */
     @RequestMapping(value = "searchItemModelByItemQty", method = RequestMethod.GET)
     @ResponseBody
     public List<ItemModel> searchItemModelByItemQty(@RequestParam("qty")double qty) {
@@ -128,6 +144,11 @@ public class ItemController {
 
     /**
      * Search All Item
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      *
      * @return
      */
@@ -172,6 +193,15 @@ public class ItemController {
         return list;
     }
 
+    /**
+     * Search Stock Amount
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     * @return
+     */
     @RequestMapping(value = "searchStockAmount", method = RequestMethod.GET)
     @ResponseBody
     public ResponseMessage searchStockAmount() {
@@ -217,6 +247,17 @@ public class ItemController {
 //        return  itemSimpleModelsList;
 //    }
 
+
+    /***
+     * Remove Item
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     * @param itemId
+     * @return
+     */
     @RequestMapping(value = "removeItem", method = RequestMethod.GET)
     @ResponseBody
     public ResponseMessage searchCategoryById(@RequestParam("itemId") Long itemId) {
@@ -233,6 +274,17 @@ public class ItemController {
         return responseMessage;
     }
 
+    /**
+     *
+     * Get Item Details
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     * @param itemId
+     * @return
+     */
     @RequestMapping(value = "getItemDetails", method = RequestMethod.GET)
     @ResponseBody
     public ResponseMessage getItemDetails(@RequestParam("itemId")Long itemId) {
@@ -248,18 +300,18 @@ public class ItemController {
         return responseMessage;
     }
 
-
-    /**
-     * Get Row Count
-     *
-     * @return
-     */
-    @RequestMapping(value = "getRowCount", method = RequestMethod.GET)
-    @ResponseBody
-    public Long getRowCount() {
-        Long a = itemDAOService.getAllCount();
-        return a;
-    }
+//
+//    /**
+//     * Get Row Count
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "getRowCount", method = RequestMethod.GET)
+//    @ResponseBody
+//    public Long getRowCount() {
+//        Long a = itemDAOService.getAllCount();
+//        return a;
+//    }
 
 
     @RequestMapping(value = "ob", method = RequestMethod.GET)

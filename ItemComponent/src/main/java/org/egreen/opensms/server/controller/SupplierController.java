@@ -26,6 +26,10 @@ public class SupplierController {
      *
      * Save Vendor Category
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @param vendorCategoryEntity
      * @return
      */
@@ -61,21 +65,42 @@ public class SupplierController {
         return ResponseMessage.SUCCESS;
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseMessage searchGrnOrderByOrderId() {
-        List<Supplier> res = vendorCategoryDAOService.searchAllVendor();
-        ResponseMessage responseMessage;
-        if(res != null){
-            responseMessage = ResponseMessage.SUCCESS;
-            responseMessage.setData(res);
-        }else{
-            responseMessage = ResponseMessage.DANGER;
-            responseMessage.setData(res);
-        }
-        return responseMessage;
-    }
 
+//    /**
+//     *
+//     * @author Pramoda Nadeeshan Fernando
+//     * @version 1.0
+//     * @since 2015-03-17 04.26PM
+//     *
+//     * @return
+//     */
+//    @RequestMapping(value = "search", method = RequestMethod.GET)
+//    @ResponseBody
+//    public ResponseMessage searchGrnOrderByOrderId() {
+//        List<Supplier> res = vendorCategoryDAOService.searchAllVendor();
+//        ResponseMessage responseMessage;
+//        if(res != null){
+//            responseMessage = ResponseMessage.SUCCESS;
+//            responseMessage.setData(res);
+//        }else{
+//            responseMessage = ResponseMessage.DANGER;
+//            responseMessage.setData(res);
+//        }
+//        return responseMessage;
+//    }
+
+
+    /**
+     * Remove Supplier
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     *
+     * @param supplierId
+     * @return
+     */
     @RequestMapping(value = "removeSupplier", method = RequestMethod.GET)
     @ResponseBody
     public ResponseMessage searchCategoryById(@RequestParam("supplierId") Long supplierId) {

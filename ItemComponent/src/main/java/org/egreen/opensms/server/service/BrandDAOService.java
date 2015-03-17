@@ -22,8 +22,11 @@ public class BrandDAOService {
     private BrandDAOController brandDAOController;
 
     /**
-     *
      * Save Brand
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
      *
      * @param brand
      * @return
@@ -36,9 +39,13 @@ public class BrandDAOService {
     }
 
 
+
     /**
-     *
      * Get All Brand
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
      *
      * @return
      */
@@ -90,6 +97,18 @@ public class BrandDAOService {
         return brandDAOController.read(brandId);
     }
 
+    /**
+     *
+     * Remove Brand
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     *
+     * @param brandId
+     * @return
+     */
     public Integer deleteBrand(Long brandId) {
 
         return brandDAOController.deleteBrand(brandId);

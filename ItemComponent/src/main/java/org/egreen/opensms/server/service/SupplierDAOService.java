@@ -74,6 +74,17 @@ public class SupplierDAOService {
         return venderCategoryDAOController.read(vendorID);
     }
 
+    /**
+     * Remove Supplier
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     *
+     * @param supplierId
+     * @return
+     */
     public Integer deleteSupplier(Long supplierId) {
 
         return venderCategoryDAOController.deleteSupplier(supplierId);

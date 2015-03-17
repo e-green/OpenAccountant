@@ -32,6 +32,10 @@ public class CategoryDAOService {
     /**
      * Save Category
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @param category
      * @return
      */
@@ -55,20 +59,27 @@ public class CategoryDAOService {
         return true;
     }
 
-    /**
-     * Search Catogory By ID
-     *
-     * @param categoryname
-     * @return
-     */
-    public List<Category> searchCategoryByName(String categoryname) {
-        List<Category> categoryList = daoController.findCategoryByQuery(categoryname);
-        return categoryList;
-    }
+//    /**
+//     * Search Category By Name
+//     *
+//     * @author Pramoda Nadeeshan Fernando
+//     * @version 1.0
+//     * @since 2015-03-17 04.26PM
+//     *
+//     * @param categoryName
+//     * @return
+//     */
+//    public List<Category> searchCategoryByName(String categoryname) {
+//        List<Category> categoryList = daoController.findCategoryByQuery(categoryname);
+//        return categoryList;
+//    }
 
-    /***
+    /**
+     * Search All Category
      *
-     * Get All Category
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
      *
      * @return
      */
@@ -91,8 +102,11 @@ public class CategoryDAOService {
 
 
     /**
+     * Remove Category
      *
-     * Delete Category
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
      *
      * @param categoryId
      * @return

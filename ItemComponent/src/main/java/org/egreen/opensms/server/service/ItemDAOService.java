@@ -38,6 +38,10 @@ public class ItemDAOService {
      *
      * Save Item
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @param item
      * @return
      */
@@ -45,9 +49,6 @@ public class ItemDAOService {
         LOGGER.info(item);
         long itemId = new Date().getTime();
         item.setItemId(itemId);
-        System.out.println("Item Name : "+item.getName());
-
-
         Long aLong = itemDAOController.create(item);
         return  aLong;
     }

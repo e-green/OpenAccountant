@@ -24,6 +24,10 @@ public class CategoryController {
     /**
      * Save Category
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @param category
      * @return
      */
@@ -57,30 +61,38 @@ public class CategoryController {
         return ResponseMessage.SUCCESS;
     }
 
-    /**
-     * Search Category By Name
-     *
-     * @param categoryName
-     * @return
-     */
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseMessage searchCategoryByName(@RequestParam("categoryName") String categoryName) {
-        List<Category> res = categoryDAOService.searchCategoryByName(categoryName);
-
-        ResponseMessage responseMessage;
-        if (res != null) {
-            responseMessage = ResponseMessage.SUCCESS;
-            responseMessage.setData(res);
-        } else {
-            responseMessage = ResponseMessage.DANGER;
-            responseMessage.setData(res);
-        }
-        return responseMessage;
-    }
+//    /**
+//     * Search Category By Name
+//     *
+//     * @author Pramoda Nadeeshan Fernando
+//     * @version 1.0
+//     * @since 2015-03-17 04.26PM
+//     *
+//     * @param categoryName
+//     * @return
+//     */
+//    @RequestMapping(value = "search", method = RequestMethod.GET)
+//    @ResponseBody
+//    public ResponseMessage searchCategoryByName(@RequestParam("categoryName") String categoryName) {
+//        List<Category> res = categoryDAOService.searchCategoryByName(categoryName);
+//
+//        ResponseMessage responseMessage;
+//        if (res != null) {
+//            responseMessage = ResponseMessage.SUCCESS;
+//            responseMessage.setData(res);
+//        } else {
+//            responseMessage = ResponseMessage.DANGER;
+//            responseMessage.setData(res);
+//        }
+//        return responseMessage;
+//    }
 
     /**
      * Search All Category
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
      *
      * @return
      */
@@ -116,6 +128,10 @@ public class CategoryController {
 
     /**
      * Remove Category
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
      *
      * @param categoryId
      * @return

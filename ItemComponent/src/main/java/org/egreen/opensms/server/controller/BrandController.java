@@ -24,6 +24,10 @@ public class BrandController {
     /**
      * Save Brand
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @param brand
      * @return
      */
@@ -47,6 +51,10 @@ public class BrandController {
     /**
      * Get All Brand
      *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
      * @return
      */
     @RequestMapping(value = "search", method = RequestMethod.GET)
@@ -68,9 +76,9 @@ public class BrandController {
      *
      * Search Brand by Range
      * Can Order by Name
-     *
-     * @param offset
-     * @param limit
+//     *
+//     * @param offset
+//     * @param limit
      * @return
      */
 
@@ -83,6 +91,18 @@ public class BrandController {
 //  }
 
 
+    /**
+     *
+     * Remove Brand
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-03-17 04.26PM
+     *
+     *
+     * @param brandId
+     * @return
+     */
     @RequestMapping(value = "removeBrand", method = RequestMethod.GET)
     @ResponseBody
     public ResponseMessage searchCategoryById(@RequestParam("brandId") Long brandId) {
@@ -99,20 +119,20 @@ public class BrandController {
 
     }
 
-    /**
-     *
-     * Search By Type
-     *
-     * @param type
-     * @return
-     */
-    @RequestMapping(value = "search_byType",method = RequestMethod.GET)
-    @ResponseBody
-    public List<Brand>searchBrandByType(@RequestParam("type")String type){
-        List<Brand>limitList = brandDAOService.getBrandByType(type);
-        LOGGER.info(limitList);
-        return  limitList;
-    }
+//    /**
+//     *
+//     * Search By Type
+//     *
+//     * @param type
+//     * @return
+//     */
+//    @RequestMapping(value = "search_byType",method = RequestMethod.GET)
+//    @ResponseBody
+//    public List<Brand>searchBrandByType(@RequestParam("type")String type){
+//        List<Brand>limitList = brandDAOService.getBrandByType(type);
+//        LOGGER.info(limitList);
+//        return  limitList;
+//    }
 
     @RequestMapping(value = "ob",method = RequestMethod.GET)
     @ResponseBody
