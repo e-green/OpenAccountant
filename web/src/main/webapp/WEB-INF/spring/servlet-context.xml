@@ -17,6 +17,10 @@
     <annotation-driven/>
 
 
+    <resources mapping="/static/**" location="/static/"/>
+
+    <!-- Internationalization support -->
+
     <!-- Internationalization support -->
 
     <beans:bean id="localeResolver"
@@ -51,7 +55,7 @@
 
         <beans:property name="prefix">
 
-            <beans:value>/WEB-INF/</beans:value>
+            <beans:value>/</beans:value>
 
         </beans:property>
 

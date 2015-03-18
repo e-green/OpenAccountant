@@ -5,28 +5,28 @@ module.config(function ($routeProvider) {
     $routeProvider
 
         .when('/', {
-            templateUrl: 'app/template/home/Home.html',
+            templateUrl: 'static/app/template/home/Home.html',
             controller: ''
         }).when('/income', {
-            templateUrl: 'app/template/income/Income.html',
+            templateUrl: 'static/app/template/income/Income.html',
             controller: ''
         }).when('/spending', {
-            templateUrl: 'app/template/spendings/Spending.html',
+            templateUrl: 'static/app/template/spendings/Spending.html',
             controller: ''
         }).when('/customer', {
-            templateUrl: 'app/template/customer/Customer.html',
+            templateUrl: 'static/app/template/customer/Customer.html',
             controller: ''
         }).when('/invoice/:customer_id', {
-            templateUrl: 'app/template/invoice/Invoice.html',
+            templateUrl: 'static/app/template/invoice/Invoice.html',
             controller: ''
         }).when('/report', {
-            templateUrl: 'app/template/reports/Report.html',
+            templateUrl: 'static/app/template/reports/Report.html',
             controller: ''
         }).when('/payment', {
-            templateUrl: 'app/template/payments/Payment.html',
+            templateUrl: 'static/app/template/payments/Payment.html',
             controller: ''
         }).when('/inventory', {
-            templateUrl: 'app/template/inventry/Inventry.html',
+            templateUrl: 'static/app/template/inventry/Inventry.html',
             controller: ''
         }).otherwise({
             redirectTo: '/'
