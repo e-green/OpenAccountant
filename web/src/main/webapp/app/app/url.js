@@ -14,5 +14,9 @@ var host = {
     customer_payment: mainHost + '/customer_payment',
     cheque_details: mainHost + '/cheque_details',
     TranceActions: mainHost + '/TranceActions',
-    reports: mainHost + '/reports'
+    reports: mainHost + '/reports',
+    category: mainHost + '/category',
+    supplier: mainHost + '/supplier',
+    brand: mainHost + '/brand',
+    item: mainHost + '/item'
 };

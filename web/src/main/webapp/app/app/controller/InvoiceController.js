@@ -1,7 +1,7 @@
 /**
  * Created by ChanakaDeSilva on 2/16/2015.
  */
-function InvoiceController($scope, $routeParams, invoiceService) {
+function InvoiceController($scope, $routeParams, invoiceService, inventryService) {
 
     var customer_id = $routeParams.customer_id;
     console.log(customer_id);
@@ -12,8 +12,25 @@ function InvoiceController($scope, $routeParams, invoiceService) {
     $scope.invoice = {};
     $scope.orderItems = [];
     $scope.order_price = "";
+    $scope.allItems = [];
 
     $scope.order_id = "";
+
+    inventryService.getItemsforview().then(function (data) {
+        console.log(data);
+        $scope.allItems = data.data;
+    });
+
+//    Get Item Price
+    $scope.getItemPrice = function () {
+        var itemid = $scope.invoice.itemName;
+        console.log(itemid);
+        invoiceService.getItemPriceView(itemid).then(function (data) {
+            console.log(data);
+            $scope.invoice.rate = data.data.retailPrice;
+            console.log("Price : " + $scope.invoice.rate)
+        });
+    };
 
 //    Get Customer Details
     invoiceService.getCustomerInfo(customer_id).then(function (data) {
@@ -52,7 +69,7 @@ function InvoiceController($scope, $routeParams, invoiceService) {
     $scope.saveCustomerOrderItem = function () {
         var item = {
             "cusOrderId": customerOrderID,
-            "itemId": new Date().getSeconds(),
+            "itemId": $scope.invoice.itemName,
             "itemName": $scope.invoice.itemName,
             "description": $scope.invoice.description,
             "quentity": $scope.invoice.quentity,

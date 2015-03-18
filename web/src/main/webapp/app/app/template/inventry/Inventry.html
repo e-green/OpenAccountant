@@ -1,0 +1,433 @@
+<!--Adding page content-->
+<div ng-controller="InventryController">
+
+<div style="padding-left: 130px;padding-right: 20px;">
+    <div class="ui raised segment">
+        <a class="ui teal ribbon label">Inventory</a>
+        <br><br>
+
+        <div class="ui grid">
+
+            <div class="eight wide column">
+
+            </div>
+
+            <div class="five wide column">
+                <div>
+                    <button ng-click="viewCategory()" class="ui primary button">Category</button>
+                    <button ng-click="viewSupplier()" class="ui primary button">Supplier</button>
+                    <button ng-click="viewBrand()" class="ui primary button">Brand</button>
+                </div>
+            </div>
+
+            <div class="three wide column" style="text-align: right">
+
+                <a class="ui green tag label huge"><span ng-bind="inventoryValue"></span></a><br>
+                <label style="color: #004d40">TOTAL INVENTORY VALUE</label>
+                <br><br>
+                <button ng-click="viewItemAdd()" class="ui primary button">Add Item</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="padding-left: 130px;padding-right: 20px;" ng-show="addItemView">
+    <div class="ui raised segment" style="background-color: #d4e4f3">
+        <a class="ui teal ribbon label">Add New Item</a>
+
+        <div class="ui form">
+            <div class="fields">
+                <div class="four wide field">
+                    <label for="name">Item Name</label>
+                    <input ng-model="inventory.itemName" id="name" type="text" placeholder="Enter Item Name"
+                           required>
+                </div>
+                <div class="four wide field">
+                    <label>Item Type</label>
+
+                    <select name="gender" class="ui dropdown" ng-model="inventory.categoryId">
+                        <option value="">Item type</option>
+                        <option ng-repeat="data in allCategories" value="{{data.categoryId}}">{{data.categoryName}}
+                        </option>
+
+                    </select>
+                </div>
+                <div class="four wide field">
+                    <label>Supplier</label>
+                    <select name="gender" class="ui dropdown" ng-model="inventory.vendorId">
+                        <option value="">Supplier</option>
+                        <option ng-repeat="data in allSuppliers" value="{{data.supplierId}}">{{data.supplierName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="four wide field">
+                    <label>Brand</label>
+                    <select name="gender" class="ui dropdown" ng-model="inventory.brandId">
+                        <option value="">Brand</option>
+                        <option ng-repeat="data in allBrands" value="{{data.brandId}}">{{data.brandName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="fields">
+                <div class="four wide field">
+                    <label>Stock Level</label>
+                    <input ng-model="inventory.qty" type="number" placeholder="Enter Stock Level"
+                           required>
+                </div>
+                <div class="four wide field">
+                    <label>Buy Price</label>
+                    <input ng-model="inventory.buyingPrice" type="text" placeholder="Enter Buy Price"
+                           required>
+                </div>
+                <div class="four wide field">
+                    <label>Wholesale Price</label>
+
+                    <input ng-model="inventory.wholeSalePrice" type="text" placeholder="Enter Wholesale Price"
+                           required>
+                </div>
+                <div class="four wide field">
+                    <label>Retail Price</label>
+
+                    <input ng-model="inventory.retailPrice" type="text" placeholder="Enter Retail Price"
+                           required>
+                </div>
+            </div>
+            <div class="ui grid">
+                <div class="four wide column"></div>
+
+                <div class="eleven wide column"></div>
+
+                <div class="one wide column">
+
+                </div>
+                <div class="three wide column">
+                    <button class="ui button" ng-click="hideItemAdd()">Cancel</button>
+                    <!--<button class="ui primary button" ng-click="saveIncome()">Save</button>-->
+                    <input type="submit"
+                           class="ui primary button"
+                           value="Save" ng-click="saveItem()">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Category View-->
+<div style="padding-left: 130px;padding-right: 20px;" ng-show="categoryView">
+    <div class="ui raised segment" style="background-color: #d4e4f3">
+        <a class="ui teal ribbon label">Category Management</a>
+        <br><br>
+
+        <div class="ui form">
+            <div class="fields">
+                <div class="four wide field">
+                    <label for="name">Category Name</label>
+                    <input ng-model="category.categoryName" type="text" placeholder="Enter Category name" required/>
+                    <br><br>
+                    <input type="submit" class="ui primary button" value="Add" ng-click="addCategory()">
+                    <input type="submit" class="ui button" value="Cancel" ng-click="hideCategory()">
+                </div>
+                <div class="twelve wide field">
+                    <table class="ui sortable celled table">
+                        <tr>
+                            <th>Category ID</th>
+                            <th>Category Name</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr ng-repeat="data in allCategories">
+                            <td>{{data.categoryId}}</td>
+                            <td>{{data.categoryName}}</td>
+                            <td>
+                                <button class="ui icon button"><i class="remove icon"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Supplier Management-->
+<div style="padding-left: 130px;padding-right: 20px;" ng-show="supplierView">
+    <div class="ui raised segment" style="background-color: #d4e4f3">
+        <a class="ui teal ribbon label">Supplier Management</a>
+        <br><br>
+
+        <div class="ui form">
+            <div class="fields">
+                <div class="four wide field">
+                    <label for="name">Supplier Name</label>
+                    <input ng-model="supplier.supplierName" type="text" placeholder="Enter Category name" required/>
+                    <br><br>
+                    <label for="name">Supplier Contact No</label>
+                    <input ng-model="supplier.contactNumber" type="text" placeholder="Enter Category name" required/>
+                    <br><br>
+                    <input type="submit" class="ui primary button" value="Add" ng-click="addSupplier()">
+                    <input type="submit" class="ui button" value="Cancel" ng-click="hideSupplier()">
+                </div>
+                <div class="twelve wide field">
+                    <table class="ui sortable celled table">
+                        <tr>
+                            <th>Supplier Name</th>
+                            <th>Supplier Contact</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr ng-repeat="data in allSuppliers">
+                            <td>{{data.supplierName}}</td>
+                            <td>{{data.contactNumber}}</td>
+                            <td>
+                                <button class="ui icon button"><i class="remove icon"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of supplier management-->
+
+<!--Brand Management-->
+<div style="padding-left: 130px;padding-right: 20px;" ng-show="brandView">
+    <div class="ui raised segment" style="background-color: #d4e4f3">
+        <a class="ui teal ribbon label">Brand Management</a>
+        <br><br>
+
+        <div class="ui form">
+            <div class="fields">
+                <div class="four wide field">
+                    <label for="name">Brand Name</label>
+                    <input ng-model="brand.brandName" type="text" placeholder="Enter Brand name" required/>
+                    <br><br>
+                    <input type="submit" class="ui primary button" value="Add" ng-click="addBrand()">
+                    <input type="submit" class="ui button" value="Cancel" ng-click="hideBrand()">
+                </div>
+                <div class="twelve wide field">
+                    <table class="ui sortable celled table">
+                        <tr>
+                            <th>Brand ID</th>
+                            <th>Brand Name</th>
+                            <th>Options</th>
+                        </tr>
+                        <tr ng-repeat="data in allBrands">
+                            <td>{{data.brandId}}</td>
+                            <td>{{data.brandName}}</td>
+                            <td>
+                                <button class="ui icon button"><i class="remove icon"></i></button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of brand management-->
+
+
+<div style="padding-left: 130px;padding-right: 20px;">
+    <div class="ui raised segment">
+        <div class="ui form">
+            <div class="fields">
+                <div class="four wide field">
+
+                </div>
+                <div class="four wide field">
+                    <label>View Items below</label>
+                    <input type="number" ng-model="inventory.limit" placeholder="Enter Search Value">
+                </div>
+                <div class="two wide field">
+                    <label>Search</label>
+                    <button class="ui blue icon button" ng-click="searchItem()"><i class="search icon"></i>
+                    </button>
+                    <button class="ui teal icon button" ng-click="resetAll()"><i class="refresh icon"></i>
+                    </button>
+                </div>
+                <div class="six wide field">
+                    <label>Search
+                        <div class="ui form">
+                            <div class="grouped inline fields">
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="fruit" checked="checked">
+                                        <label>Item</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="fruit">
+                                        <label>Category</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="fruit">
+                                        <label>Supplier</label>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="ui radio checkbox">
+                                        <input type="radio" name="fruit">
+                                        <label>Brand</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </label>
+                    <input ng-model="query" type="text" placeholder="Enter Name for Search">
+                </div>
+            </div>
+        </div>
+        <table class="ui sortable celled table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Supplier</th>
+                <th>Brand</th>
+                <th>Stock Level</th>
+                <th>Buy Price (Rs)</th>
+                <th>Wholesale Price (Rs)</th>
+                <th>Retail Price (Rs)</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="data in allItems | filter : query">
+                <td>{{data.name}}</td>
+                <td>{{data.categoryDetails.categoryName}}</td>
+                <td>{{data.supplierDetails.supplierName}}</td>
+                <td>{{data.brandDetails.brandName}}</td>
+                <td>{{data.qty}}</td>
+                <td>{{data.buyingPrice}}</td>
+                <td>{{data.wholeSalePrice}}</td>
+                <td>{{data.retailPrice}}</td>
+                <td>
+                    <button class="ui red icon button"><i class="remove icon"></i></button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!--Creating a confirmation Modal-->
+
+<div class="ui basic modal" id="confirmModal">
+    <i class="close icon"></i>
+
+    <div class="header">
+        Do you want to delete income record ?
+    </div>
+    <div class="content">
+        <div class="image">
+            <i class="trash icon"></i>
+        </div>
+        <div class="description">
+            <p>Make sure you cannot recover any deleted income records.</p>
+        </div>
+    </div>
+    <div class="actions">
+        <div class="two fluid ui inverted buttons">
+            <button class="ui red basic inverted button">
+                <i class="remove icon"></i>
+                No
+            </button>
+            <button class="ui green basic inverted button" ng-click="confirmAction()">
+                <i class="checkmark icon"></i>
+                Yes
+            </button>
+        </div>
+    </div>
+</div>
+
+<!--end of the confirmation modal-->
+
+</div>
+<script>
+    $('.dropdown')
+            .dropdown({
+                // you can use any ui transition
+                transition: 'drop'
+            })
+    ;
+</script>
+
+<script>
+    jQuery('#datetimepicker').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'January', 'February', 'March', 'April',
+                    'May', 'June', 'July', 'August',
+                    'September', 'October', 'November', 'December'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+    jQuery('#datetimepicker1').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'January', 'February', 'March', 'April',
+                    'May', 'June', 'July', 'August',
+                    'September', 'October', 'November', 'December'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+
+    jQuery('#datetimepicker2').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'January', 'February', 'March', 'April',
+                    'May', 'June', 'July', 'August',
+                    'September', 'October', 'November', 'December'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+
+    jQuery('#datetimepicker3').datetimepicker({
+        lang: 'en',
+        i18n: {
+            en: {
+                months: [
+                    'January', 'February', 'March', 'April',
+                    'May', 'June', 'July', 'August',
+                    'September', 'October', 'November', 'December'
+                ],
+                dayOfWeek: [
+                    "So.", "Mo", "Di", "Mi",
+                    "Do", "Fr", "Sa."
+                ]
+            }
+        },
+        timepicker: false,
+        format: 'Y-m-d'
+    });
+</script>

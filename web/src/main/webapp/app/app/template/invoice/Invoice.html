@@ -47,7 +47,13 @@
                 <div class="fields">
                     <div class="three wide field">
                         <label>Product</label>
-                        <input type="text" ng-model="invoice.itemName" placeholder="Select Product">
+
+                        <select class="ui search dropdown" ng-model="invoice.itemName" ng-change="getItemPrice()">
+                            <option value="">Select Product</option>
+                            <option ng-repeat="data in allItems" value="{{data.itemId}}">{{data.name}}
+                            </option>
+                        </select>
+
                     </div>
                     <div class="three wide field">
                         <label>Description</label>

@@ -64,12 +64,12 @@ module.factory('invoiceService', function ($http) {
                 url: host.customer_order + '/updateAmountById?orderId=' + data.order_id + '&amount=' + data.amount}).then(function (response) {
                 return response.data;
             });
-        }, getPDF: function (id) {
+        }, getItemPriceView: function (id) {
 
             return $http({
                 method: "GET",
                 headers: headers,
-                url: host.reports + '/customer_invoice?customerOrderId=' + id}).then(function (response) {
+                url: host.item + '/getItemDetails?itemId=' + id}).then(function (response) {
                 return response.data;
             });
         }

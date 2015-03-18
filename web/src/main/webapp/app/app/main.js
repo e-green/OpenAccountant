@@ -25,6 +25,9 @@ module.config(function ($routeProvider) {
         }).when('/payment', {
             templateUrl: 'app/template/payments/Payment.html',
             controller: ''
+        }).when('/inventory', {
+            templateUrl: 'app/template/inventry/Inventry.html',
+            controller: ''
         }).otherwise({
             redirectTo: '/'
         });
