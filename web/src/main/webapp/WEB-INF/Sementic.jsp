@@ -22,7 +22,7 @@
 
             <div class="ui grid">
                 <div class="six wide column">
-                    <h2 class="ui inverted header">Welcome back, Mint User!</h2>
+                    <h2 class="ui inverted header">Welcome back, Mint Demo User!</h2>
                 </div>
                 <div class="two wide column"></div>
                 <div class="seven wide column">
