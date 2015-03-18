@@ -21,4 +21,7 @@ public interface ItemDAOController extends DAOController<Item, Long> {
     List<Item> searchItemModelByItemQty(double qty);
 
     Integer deleteItem(Long itemId);
+
+    Item searchItemByItemName(String itemName);
+
 }

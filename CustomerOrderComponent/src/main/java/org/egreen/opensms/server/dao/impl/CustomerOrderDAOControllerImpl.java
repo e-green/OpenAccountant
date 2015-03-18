@@ -90,4 +90,11 @@ public class CustomerOrderDAOControllerImpl extends AbstractDAOController<Custom
         criteria.setProjection(Projections.sum("amount"));
         return (BigDecimal)criteria.uniqueResult();
     }
+
+    @Override
+    public List<CustomerOrder> searchOrderHistoryByCustomerId(Long customerId) {
+        Criteria criteria = getSession().createCriteria(entityType);
+        criteria.add(Restrictions.eq("customerId",customerId));
+        return criteria.list();
+    }
 }

@@ -108,4 +108,9 @@ public class CustomerOrderDAOService {
         return customerOrderDAOController.read(customerOrderId);
 
     }
+
+    public List<CustomerOrder> searchOrderHistoryByCustomerId(Long customerId) {
+
+        return customerOrderDAOController.searchOrderHistoryByCustomerId(customerId);
+    }
 }

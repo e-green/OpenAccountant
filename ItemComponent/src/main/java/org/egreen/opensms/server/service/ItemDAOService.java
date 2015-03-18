@@ -178,4 +178,9 @@ public class ItemDAOService {
     public Item getItemDetails(Long itemId) {
         return itemDAOController.read(itemId);
     }
+
+
+    public Item searchItemByItemName(String itemName) {
+        return itemDAOController.searchItemByItemName(itemName);
+    }
 }

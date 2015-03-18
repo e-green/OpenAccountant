@@ -22,4 +22,5 @@ public interface CustomerOrderDAOController extends DAOController<CustomerOrder,
 
     BigDecimal totalCustomerOrderValue();
 
+    List<CustomerOrder> searchOrderHistoryByCustomerId(Long customerId);
 }
