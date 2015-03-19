@@ -114,6 +114,13 @@ public class CustomerOrderController {
         List<CustomerOrder> list = customerOrderDAOService.searchAllCustomerOrderByDate();
         return list;
     }
+
+    @RequestMapping(value = "searchOrderHistoryByCustomerId", method = RequestMethod.GET)
+    @ResponseBody
+    public List<CustomerOrder> searchOrderHistoryByCustomerId(@RequestParam("customerId")Long customerId) {
+        List<CustomerOrder> list = customerOrderDAOService.searchOrderHistoryByCustomerId(customerId);
+        return list;
+    }
 //
 //    @RequestMapping(value = "searchCustomerOrderLimitByCredit", method = RequestMethod.GET)
 //    @ResponseBody

@@ -53,12 +53,23 @@ public class CustomerOrderPaymentController {
         return responseMessage;
     }
 
-//    @RequestMapping(value = "searchCustomerPayments",method = RequestMethod.GET)
-//    @ResponseBody
-//    public List<CustomerOrderPayment> searchCustomerPayments(@RequestParam("orderId")Long orderId){
-//        List<CustomerOrderPayment> list = customerPaymentDAOService.getAllCustomerPayementsByOrderId(orderId);
-//        return list;
-//    }
+
+    /**
+     * Search Customer Payments
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-02-16 12.26PM
+     *
+     * @param orderId
+     * @return
+     */
+    @RequestMapping(value = "searchCustomerPayments",method = RequestMethod.GET)
+    @ResponseBody
+    public List<CustomerOrderPayment> searchCustomerPayments(@RequestParam("orderId")Long orderId){
+        List<CustomerOrderPayment> list = customerPaymentDAOService.getAllCustomerPayementsByOrderId(orderId);
+        return list;
+    }
 
     /**
      *

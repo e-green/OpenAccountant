@@ -35,6 +35,8 @@ public class CustomerOrderHasItemController {
     @ResponseBody
     public ResponseMessage addCustomerOrderHasItem(@RequestBody CustomerOrderHasItem customerOrderHasItem) {
 
+        System.out.println("Item Detail : "+customerOrderHasItem);
+
         CustomerOrderHasItemPK res = customerOrderHasItemDAOService.saveCustomerOrderHasItem(customerOrderHasItem);
         ResponseMessage responseMessage;
         if(res != null){

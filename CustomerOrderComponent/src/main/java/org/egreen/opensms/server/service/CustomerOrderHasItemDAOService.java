@@ -24,9 +24,6 @@ public class CustomerOrderHasItemDAOService {
     @Autowired
     private ItemDAOService itemDAOService;
 
-
-
-
     /**
      * Customer Order Has ItemSave
      *
@@ -39,20 +36,36 @@ public class CustomerOrderHasItemDAOService {
      */
     public CustomerOrderHasItemPK saveCustomerOrderHasItem(CustomerOrderHasItem customerOrderHasItem) {
         long customerOrderHasItemId = new Date().getTime();
+        CustomerOrderHasItemPK returnOrderId;
+        Item itemByName = itemDAOService.searchItemByItemName(customerOrderHasItem.getItemName());
 
-
-        Item item = itemDAOService.searchItemByItemId(customerOrderHasItem.getItemId());
-        if (item.getQty().doubleValue()>customerOrderHasItem.getQuentity().doubleValue()) {
-            double qty = item.getQty().doubleValue() - customerOrderHasItem.getQuentity().doubleValue();
-            item.setQty(BigDecimal.valueOf(qty));
-            itemDAOService.updateItem(item);
+        if (itemByName != null) {
+            Item item = itemDAOService.searchItemByItemId(customerOrderHasItem.getItemId());
+            if (item.getQty().doubleValue() > customerOrderHasItem.getQuentity().doubleValue()) {
+                double qty = item.getQty().doubleValue() - customerOrderHasItem.getQuentity().doubleValue();
+                item.setQty(BigDecimal.valueOf(qty));
+                itemDAOService.updateItem(item);
+            } else {
+                item.setQty(BigDecimal.ZERO);
+                itemDAOService.updateItem(item);
+            }
+            customerOrderHasItem.setCustomerOrderHasItemId(customerOrderHasItemId);
+            returnOrderId = customerOrderHasItemDAOController.create(customerOrderHasItem);
         }else{
-            item.setQty(BigDecimal.ZERO);
-            itemDAOService.updateItem(item);
+
+            Item item = new Item();
+            System.out.println("ItemName : "+customerOrderHasItem.getItemName());
+            item.setName(customerOrderHasItem.getItemName());
+            item.setBuyingPrice(customerOrderHasItem.getAmount());
+
+            Long aLong = itemDAOService.saveItem(item);
+            System.out.println("ITem Add : "+aLong);
+
+            customerOrderHasItem.setCustomerOrderHasItemId(customerOrderHasItemId);
+            returnOrderId = customerOrderHasItemDAOController.create(customerOrderHasItem);
         }
 
-        customerOrderHasItem.setCustomerOrderHasItemId(customerOrderHasItemId);
-        return customerOrderHasItemDAOController.create(customerOrderHasItem);
+        return returnOrderId;
     }
 
     /**

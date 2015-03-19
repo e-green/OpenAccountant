@@ -73,4 +73,12 @@ public class ItemDAOControllerImpl extends AbstractDAOController<Item, Long> imp
         int i = session.createQuery(hql).setLong("itemId", itemId).executeUpdate();
         return i;
     }
+
+    @Override
+    public Item searchItemByItemName(String itemName) {
+        Query query = getSession().createQuery("SELECT it from Item it WHERE it.name LIKE :itemName");
+//        query.setString("itemName", itemName);
+        query.setString("itemName", itemName + "%");
+        return (Item)query.uniqueResult();
+    }
 }

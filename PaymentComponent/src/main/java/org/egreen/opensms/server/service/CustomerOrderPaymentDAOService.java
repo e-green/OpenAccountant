@@ -1,6 +1,8 @@
 package org.egreen.opensms.server.service;
 
+import org.egreen.opensms.server.dao.CustomerOrderDAOController;
 import org.egreen.opensms.server.dao.CustomerOrderPaymentDAOController;
+import org.egreen.opensms.server.entity.CustomerOrder;
 import org.egreen.opensms.server.entity.CustomerOrderPayment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +21,8 @@ public class CustomerOrderPaymentDAOService {
     @Autowired
     private CustomerOrderPaymentDAOController customerOrderPaymentDAOController;
 
-//    @Autowired
-//    private CustomerOrderDAOController customerOrderDAOController;
+    @Autowired
+    private CustomerOrderDAOController  customerOrderDAOController;
 
 
     /**
@@ -35,10 +37,33 @@ public class CustomerOrderPaymentDAOService {
     public Long saveCustomerPayment(CustomerOrderPayment customerOrderPayment) {
         long paymentId = new Date().getTime();
         customerOrderPayment.setPaymentId(paymentId);
+
+//        CustomerOrder customerOrder = customerOrderDAOController.read(customerOrderPayment.getCustomerOrderId());
+//
+//        double updateValue;
+//        if (customerOrder.getAmount().doubleValue()>customerOrderPayment.getAmount().doubleValue()) {
+//          updateValue = customerOrder.getAmount().doubleValue() - customerOrderPayment.getAmount().doubleValue();
+//            customerOrder.setAmount(BigDecimal.valueOf(updateValue));
+//            customerOrderDAOController.update(customerOrder);
+//        }else{
+//            customerOrder.setAmount(BigDecimal.ZERO);
+//            customerOrderDAOController.update(customerOrder);
+//        }
+
         return  customerOrderPaymentDAOController.create(customerOrderPayment);
 
     }
 
+    /**
+     * Search Customer Payments
+     *
+     * @author Pramoda Nadeeshan Fernando
+     * @version 1.0
+     * @since 2015-02-16 12.26PM
+     *
+     * @param orderId
+     * @return
+     */
     public List<CustomerOrderPayment> getAllCustomerPayementsByOrderId(Long orderId) {
         return customerOrderPaymentDAOController.getAllCustomerPayementsByOrderId(orderId);
     }
