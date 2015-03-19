@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: servlet-api-3.0-alpha-1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/servlet-api/3.0-alpha-1/7b491267924e8c81f4f9378caba0ee03423948ca/servlet-api-3.0-alpha-1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/javax.servlet/servlet-api/3.0-alpha-1/8b1dcbc2dc5d789ba793af327e3d10bfd51e8814/servlet-api-3.0-alpha-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

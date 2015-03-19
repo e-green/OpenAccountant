@@ -34,6 +34,7 @@ public class CustomerOrderHasItemController {
     @RequestMapping(value = "save", method = RequestMethod.POST, headers = "Accept=application/json")
     @ResponseBody
     public ResponseMessage addCustomerOrderHasItem(@RequestBody CustomerOrderHasItem customerOrderHasItem) {
+
         CustomerOrderHasItemPK res = customerOrderHasItemDAOService.saveCustomerOrderHasItem(customerOrderHasItem);
         ResponseMessage responseMessage;
         if(res != null){

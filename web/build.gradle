@@ -9,8 +9,12 @@ dependencies {
     compile project(':dbcontroller')
     compile project(':usercomponent')
     compile project(':PaymentComponent')
+    compile project(':ItemComponent')
     compile project(':CustomerOrderComponent')
     compile project(':TranceActionComponent')
 
 
+}
+war{
+    war.archiveName "web.war"
 }

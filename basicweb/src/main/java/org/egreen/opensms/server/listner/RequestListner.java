@@ -24,7 +24,7 @@ public class RequestListner extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         LOGGER.info("adasd");
-        LOGGER.info(slurp(servletRequest.getInputStream(),3434));
+        //LOGGER.info(slurp(servletRequest.getInputStream(),3434));
         LOGGER.info(servletResponse);
         LOGGER.info(filterChain);
         System.out.println(slurp(servletRequest.getInputStream(),3434));
@@ -38,7 +38,7 @@ public class RequestListner extends GenericFilterBean {
         final char[] buffer = new char[bufferSize];
         final StringBuilder out = new StringBuilder();
         try {
-            final Reader in = new InputStreamReader(is, "UTF-8");
+            final Reader in = new InputStreamReader(is);
             try {
                 for (;;) {
                     int rsz = in.read(buffer, 0, buffer.length);

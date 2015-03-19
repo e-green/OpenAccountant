@@ -21,4 +21,10 @@ public class HomeController {
     public String proxy() {
         return "proxy";
     }
+
+
+    @RequestMapping(value = "/")
+    public String index() {
+        return "Sementic";
+    }
 }

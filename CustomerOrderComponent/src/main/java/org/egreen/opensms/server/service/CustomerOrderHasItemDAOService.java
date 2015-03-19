@@ -3,9 +3,11 @@ package org.egreen.opensms.server.service;
 import org.egreen.opensms.server.dao.CustomerOrderHasItemDAOController;
 import org.egreen.opensms.server.entity.CustomerOrderHasItem;
 import org.egreen.opensms.server.entity.CustomerOrderHasItemPK;
+import org.egreen.opensms.server.entity.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +20,11 @@ public class CustomerOrderHasItemDAOService {
 
     @Autowired
     private CustomerOrderHasItemDAOController customerOrderHasItemDAOController;
+
+    @Autowired
+    private ItemDAOService itemDAOService;
+
+
 
 
     /**
@@ -32,6 +39,18 @@ public class CustomerOrderHasItemDAOService {
      */
     public CustomerOrderHasItemPK saveCustomerOrderHasItem(CustomerOrderHasItem customerOrderHasItem) {
         long customerOrderHasItemId = new Date().getTime();
+
+
+        Item item = itemDAOService.searchItemByItemId(customerOrderHasItem.getItemId());
+        if (item.getQty().doubleValue()>customerOrderHasItem.getQuentity().doubleValue()) {
+            double qty = item.getQty().doubleValue() - customerOrderHasItem.getQuentity().doubleValue();
+            item.setQty(BigDecimal.valueOf(qty));
+            itemDAOService.updateItem(item);
+        }else{
+            item.setQty(BigDecimal.ZERO);
+            itemDAOService.updateItem(item);
+        }
+
         customerOrderHasItem.setCustomerOrderHasItemId(customerOrderHasItemId);
         return customerOrderHasItemDAOController.create(customerOrderHasItem);
     }

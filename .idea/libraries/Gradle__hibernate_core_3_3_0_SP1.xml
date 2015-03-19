@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: hibernate-core-3.3.0.SP1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/3.3.0.SP1/bd5e51392e0df706a6bb8a0ab820ad1a9d1b40f2/hibernate-core-3.3.0.SP1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.hibernate/hibernate-core/3.3.0.SP1/59b3d4bec159f578bdf5a7b30854c5c98be42dc0/hibernate-core-3.3.0.SP1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -3,4 +3,6 @@ dependencies {
     compile project(':basicweb')
     compile project(':dbcontroller')
     compile project(':usercomponent')
+    compile project(':ItemComponent')
+
 }
