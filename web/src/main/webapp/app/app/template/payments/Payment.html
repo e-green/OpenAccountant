@@ -15,7 +15,6 @@
                         <div class="ui search">
                             <input id="datetimepicker" ng-model="invoice.fromDate" type="text"
                                    placeholder="Select Date">
-
                         </div>
                     </div>
                     <div class="four wide field">
@@ -53,7 +52,7 @@
                         <td>{{data.customerName}}</td>
                         <td>{{data.amount}}</td>
                         <td>
-                            <button class="ui button teal" ng-click="orderItems(data.cusOrderId)">view items</button>
+                            <button class="ui button teal" ng-click="orderItemsMethod(data.cusOrderId)">view items</button>
                             <button class="ui button blue-grey" ng-click="getPaymentModal(data.cusOrderId)">payment
                             </button>
                             <button class="ui button teal" ng-click="viewPayments(data.cusOrderId)">view payment
@@ -111,8 +110,8 @@
                     </div>
 
                     <div class="four wide field">
-                        <label>Search By Transaction Name</label>
-                        <input ng-model="payment.amount" type="text" placeholder="Enter Transaction Name">
+                        <label>Payment Amount</label>
+                        <input ng-model="payment.amount" type="text" placeholder="Enter Payment Amount">
                     </div>
                 </div>
             </div>
@@ -152,20 +151,7 @@
                 </tr>
             </table>
         </div>
-        <div class="actions">
-            <div class="two fluid ui inverted buttons">
-                <button class="ui red button">
-                    <i class="remove icon"></i>
-                    No
-                </button>
-                <button class="ui green button">
-                    <i class="checkmark icon"></i>
-                    Yea
-                </button>
-            </div>
-        </div>
     </div>
-
 </div>
 <script>
     $('.dropdown')

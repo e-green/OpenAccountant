@@ -14,12 +14,12 @@ function PaymentController($scope, paymentService) {
         $scope.today_orders = data;
     });
 
-    $scope.orderItems = function (id) {
+    $scope.orderItemsMethod = function (id) {
         paymentService.getOrderItems(id).then(function (data) {
             console.log(data);
             $scope.orderItems = data.data;
+            $('#orderModal').modal('show');
         });
-        $('#orderModal').modal('show');
     };
 
 //    Get Payment Modal

@@ -1,7 +1,7 @@
 /**
  * Created by ChanakaDeSilva on 2/16/2015.
  */
-function InvoiceController($scope, $routeParams, invoiceService, inventryService) {
+function InvoiceController($scope, $routeParams, invoiceService, inventryService, customerService) {
 
     var customer_id = $routeParams.customer_id;
     console.log(customer_id);
@@ -9,12 +9,14 @@ function InvoiceController($scope, $routeParams, invoiceService, inventryService
     var customerOrderID = "";
     var total_amount = 0;
 
+    $scope.allCustomers = [];
     $scope.invoice = {};
     $scope.orderItems = [];
     $scope.order_price = "";
     $scope.allItems = [];
 
     $scope.order_id = "";
+    var itemName = "";
 
     inventryService.getItemsforview().then(function (data) {
         console.log(data);
@@ -28,15 +30,29 @@ function InvoiceController($scope, $routeParams, invoiceService, inventryService
         invoiceService.getItemPriceView(itemid).then(function (data) {
             console.log(data);
             $scope.invoice.rate = data.data.retailPrice;
+            itemName = data.data.name;
+            if (itemName === '') {
+                itemName = $scope.invoice.itemName;
+            }
             console.log("Price : " + $scope.invoice.rate)
         });
     };
 
 //    Get Customer Details
-    invoiceService.getCustomerInfo(customer_id).then(function (data) {
+    $scope.getCustomerName = function () {
+        var id = $scope.invoice.customer_name;
+        invoiceService.getCustomerInfo(id).then(function (data) {
+            console.log("Customer name method");
+            console.log(data);
+            customer_name = data.firstName;
+        });
+    };
+
+
+//    Get customer all
+    customerService.sortCustomerByName().then(function (data) {
         console.log(data);
-        $scope.invoice.customer_name = data.firstName;
-        customer_name = data.firstName;
+        $scope.allCustomers = data.data;
     });
 
 //    Save Customer Order
@@ -45,11 +61,11 @@ function InvoiceController($scope, $routeParams, invoiceService, inventryService
         var customer_order = {
             "invoiceDate": $scope.invoice.invoiceDate,
             "orderDueDate": $scope.invoice.orderDueDate,
-            "customerId": customer_id,
-            "customerName": customer_name,
+            "customerId": $scope.invoice.customer_name,
+            "customerName": $scope.invoice.itemName,
             "amount": null
         };
-
+        console.log(customer_order);
         invoiceService.saveInvoice(customer_order).then(function (data) {
             console.log(data);
             customerOrderID = data.data;
@@ -70,7 +86,7 @@ function InvoiceController($scope, $routeParams, invoiceService, inventryService
         var item = {
             "cusOrderId": customerOrderID,
             "itemId": $scope.invoice.itemName,
-            "itemName": $scope.invoice.itemName,
+            "itemName": itemName,
             "description": $scope.invoice.description,
             "quentity": $scope.invoice.quentity,
             "rate": $scope.invoice.rate,

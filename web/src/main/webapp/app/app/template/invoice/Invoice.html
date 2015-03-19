@@ -11,13 +11,16 @@
                 <div class="fields">
                     <div class="four wide field">
                         <label>Customer Name</label>
+                        <!---->
+                        <select class="ui search dropdown" ng-model="invoice.customer_name"
+                                ng-change="getCustomerName()">
+                            <option value="">Select Product</option>
+                            <option ng-repeat="data in allCustomers" value="{{data.userId}}">{{data.firstName}}
+                                {{data.middleName}} {{data.lastName}}
+                            </option>
+                        </select>
+                        <!---->
 
-                        <div class="ui search">
-                            <input ng-model="invoice.customer_name" type="text"
-                                   placeholder="Search Customers">
-
-                            <div class="results"></div>
-                        </div>
                     </div>
                     <div class="four wide field">
                         <label>Invoice Date</label>
