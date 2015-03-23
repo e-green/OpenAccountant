@@ -15,6 +15,7 @@ public class Item implements EntityInterface<Long> {
     private Long itemId;
     private String name;
     private BigDecimal qty;
+    private BigDecimal reorderLevel;
     private BigDecimal buyingPrice;
     private BigDecimal wholeSalePrice;
     private BigDecimal retailPrice;
@@ -52,6 +53,16 @@ public class Item implements EntityInterface<Long> {
 
     public void setQty(BigDecimal qty) {
         this.qty = qty;
+    }
+
+    @Basic
+    @Column(name = "reorderlevel")
+    public BigDecimal getReorderLevel() {
+        return reorderLevel;
+    }
+
+    public void setReorderLevel(BigDecimal reorderLevel) {
+        this.reorderLevel = reorderLevel;
     }
 
     @Basic
@@ -120,6 +131,7 @@ public class Item implements EntityInterface<Long> {
         return getItemId();
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -133,6 +145,7 @@ public class Item implements EntityInterface<Long> {
         if (itemId != null ? !itemId.equals(item.itemId) : item.itemId != null) return false;
         if (name != null ? !name.equals(item.name) : item.name != null) return false;
         if (qty != null ? !qty.equals(item.qty) : item.qty != null) return false;
+        if (reorderLevel != null ? !reorderLevel.equals(item.reorderLevel) : item.reorderLevel != null) return false;
         if (retailPrice != null ? !retailPrice.equals(item.retailPrice) : item.retailPrice != null) return false;
         if (vendorId != null ? !vendorId.equals(item.vendorId) : item.vendorId != null) return false;
         if (wholeSalePrice != null ? !wholeSalePrice.equals(item.wholeSalePrice) : item.wholeSalePrice != null)
@@ -146,6 +159,7 @@ public class Item implements EntityInterface<Long> {
         int result = itemId != null ? itemId.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (qty != null ? qty.hashCode() : 0);
+        result = 31 * result + (reorderLevel != null ? reorderLevel.hashCode() : 0);
         result = 31 * result + (buyingPrice != null ? buyingPrice.hashCode() : 0);
         result = 31 * result + (wholeSalePrice != null ? wholeSalePrice.hashCode() : 0);
         result = 31 * result + (retailPrice != null ? retailPrice.hashCode() : 0);
@@ -155,12 +169,14 @@ public class Item implements EntityInterface<Long> {
         return result;
     }
 
+
     @Override
     public String toString() {
         return "Item{" +
                 "itemId=" + itemId +
                 ", name='" + name + '\'' +
                 ", qty=" + qty +
+                ", reorderLevel=" + reorderLevel +
                 ", buyingPrice=" + buyingPrice +
                 ", wholeSalePrice=" + wholeSalePrice +
                 ", retailPrice=" + retailPrice +

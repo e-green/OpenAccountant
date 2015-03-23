@@ -1,8 +1,10 @@
 package org.egreen.opensms.server.controller;
 
+import org.egreen.opensms.server.entity.CustomerOrder;
 import org.egreen.opensms.server.entity.CustomerOrderPayment;
 
 import org.egreen.opensms.server.models.CustomerOrderModel;
+import org.egreen.opensms.server.models.CustomerOrderPaymentDetailModel;
 import org.egreen.opensms.server.service.CustomerOrderDAOService;
 import org.egreen.opensms.server.service.CustomerOrderPaymentDAOService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -144,6 +147,86 @@ public class CustomerOrderPaymentController {
         res.setReceivedCustomerOrderAmount(receivedCustomerOrderAmount.doubleValue());
         res.setPendingCustomerOrderAmount(pendingCustomerOrderAmount);
 
+        ResponseMessage responseMessage;
+        if(res != null){
+            responseMessage = ResponseMessage.SUCCESS;
+            responseMessage.setData(res);
+        }else{
+            responseMessage = ResponseMessage.DANGER;
+            responseMessage.setData(res);
+        }
+        return responseMessage;
+
+
+    }
+
+    @RequestMapping(value = "getAllDebatorsDetailByCustomerId", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseMessage getAllDebatorsDetailByCustomerId(@RequestParam("customerId")Long customerId) {
+        List<CustomerOrderPaymentDetailModel>res =  new ArrayList<CustomerOrderPaymentDetailModel>();
+
+        List<CustomerOrder> customerOrders = customerOrderDAOService.searchOrderHistoryByCustomerId(customerId);
+        double paidAmount = 0;
+        for (CustomerOrder customerOrder : customerOrders) {
+            System.out.println("OrderAmount : "+customerOrder.getAmount());
+            List<CustomerOrderPayment> allCustomerPayementsByOrderId = customerPaymentDAOService.getAllCustomerPayementsByOrderId(customerOrder.getCusOrderId());
+
+            for (CustomerOrderPayment customerOrderPayment : allCustomerPayementsByOrderId) {
+
+                System.out.println(customerOrderPayment.getAmount()+"-----"+customerOrderPayment.getCustomerOrderId());
+                CustomerOrderPaymentDetailModel detailModel =  new CustomerOrderPaymentDetailModel();
+
+                detailModel.setOrderId(customerOrder.getCusOrderId());
+                detailModel.setOrderDate(customerOrder.getOrderDueDate());
+                detailModel.setCustomerName(customerOrder.getCustomerName());
+                detailModel.setTotalAmount(customerOrder.getAmount().doubleValue());
+                paidAmount +=customerOrderPayment.getAmount().doubleValue();
+                detailModel.setPaidAmount(paidAmount);
+                detailModel.setRemainingAmount(customerOrder.getAmount().doubleValue()-paidAmount);
+                System.out.println("DUE :"+customerOrderPayment.getAmount());
+                res.add(detailModel);
+                paidAmount= 0;
+            }
+        }
+        ResponseMessage responseMessage;
+        if(res != null){
+            responseMessage = ResponseMessage.SUCCESS;
+            responseMessage.setData(res);
+        }else{
+            responseMessage = ResponseMessage.DANGER;
+            responseMessage.setData(res);
+        }
+        return responseMessage;
+    }
+
+
+    @RequestMapping(value = "getAllDebatorsDetail", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseMessage getAllDebatorsDetail() {
+        List<CustomerOrderPaymentDetailModel>res =  new ArrayList<CustomerOrderPaymentDetailModel>();
+
+        List<CustomerOrder> customerOrders = customerOrderDAOService.searchAllCustomerOrder();
+        double paidAmount = 0;
+        for (CustomerOrder customerOrder : customerOrders) {
+            System.out.println("OrderAmount : "+customerOrder.getAmount());
+            List<CustomerOrderPayment> allCustomerPayementsByOrderId = customerPaymentDAOService.getAllCustomerPayementsByOrderId(customerOrder.getCusOrderId());
+            for (CustomerOrderPayment customerOrderPayment : allCustomerPayementsByOrderId) {
+                System.out.println(customerOrderPayment.getAmount()+"-----"+customerOrderPayment.getCustomerOrderId());
+                CustomerOrderPaymentDetailModel detailModel =  new CustomerOrderPaymentDetailModel();
+
+                detailModel.setOrderId(customerOrder.getCusOrderId());
+                detailModel.setOrderDate(customerOrder.getOrderDueDate());
+                detailModel.setCustomerName(customerOrder.getCustomerName());
+                detailModel.setTotalAmount(customerOrder.getAmount().doubleValue());
+                paidAmount +=customerOrderPayment.getAmount().doubleValue();
+                detailModel.setPaidAmount(paidAmount);
+                detailModel.setRemainingAmount(customerOrder.getAmount().doubleValue()-paidAmount);
+                System.out.println("DUE :"+customerOrderPayment.getAmount());
+                res.add(detailModel);
+                paidAmount= 0;
+            }
+
+        }
         ResponseMessage responseMessage;
         if(res != null){
             responseMessage = ResponseMessage.SUCCESS;

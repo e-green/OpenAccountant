@@ -113,4 +113,9 @@ public class CustomerOrderDAOService {
 
         return customerOrderDAOController.searchOrderHistoryByCustomerId(customerId);
     }
+
+    public List<CustomerOrder> searchAllCustomerOrder() {
+        return customerOrderDAOController.getAll();
+
+    }
 }

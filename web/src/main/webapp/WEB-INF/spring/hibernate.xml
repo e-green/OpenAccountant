@@ -10,12 +10,6 @@
 http://www.springframework.org/schema/tx
 http://www.springframework.org/schema/tx/spring-tx.xsd"> <!-- Configuration to support system testing the rewards application. -->
 
-
-
-
-
-
-
     <!-- Creates an in-memory "rewards" database populated with test data for fast testing -->
     <bean id="dataSourceLocal" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
@@ -34,7 +28,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd"> <!-- Configuration to s
 
     <!-- TODO 9: Define a bean named 'sessionFactory' that configures a test SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-        <property name="dataSource" ref="dataSourceServer"/>
+        <property name="dataSource" ref="dataSourceLocal"/>
         <property name="packagesToScan">
             <value>
                 org.egreen.opensms.server.entity

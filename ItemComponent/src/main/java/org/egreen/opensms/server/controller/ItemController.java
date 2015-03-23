@@ -3,6 +3,7 @@ package org.egreen.opensms.server.controller;
 import org.apache.log4j.Logger;
 import org.egreen.opensms.server.entity.Item;
 import org.egreen.opensms.server.model.ItemModel;
+import org.egreen.opensms.server.model.MailMail;
 import org.egreen.opensms.server.service.BrandDAOService;
 import org.egreen.opensms.server.service.CategoryDAOService;
 import org.egreen.opensms.server.service.ItemDAOService;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +35,11 @@ public class ItemController {
 
     @Autowired
     private SupplierDAOService supplierDAOService;
+
+
+
+    @Autowired
+    private MailMail mailMail;
 
 
     /**
